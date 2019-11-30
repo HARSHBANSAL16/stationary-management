@@ -1,7 +1,5 @@
 package com.stationary.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.stationary.data.APIResponse;
+import com.stationary.data.ErrorReponse;
 import com.stationary.entity.Employee;
 import com.stationary.services.EmpService;
 
@@ -27,27 +27,45 @@ public class EmpController {
 	
 	// Get All Employees
 	@GetMapping("/get-all-employees")
-	public List<Employee> getAllEmployees() {
-	    return empService.getAllEmployees();
+	public APIResponse getAllEmployees() {
+		try {
+			return empService.getAllEmployees();
+		} catch (Exception e) {
+			return new APIResponse(new ErrorReponse("1", e.getMessage()));
+		}
+	    
 	}
 	
 	// Create a new Employee
 	@PostMapping("/create-new-employee")
-	public Employee createNote(@Valid @RequestBody Employee employee) {
-	    return empService.addNewEmployee(employee);
+	public APIResponse createNote(@Valid @RequestBody Employee employee) {
+		try {
+			return empService.addNewEmployee(employee);
+		} catch (Exception e) {
+			return new APIResponse(new ErrorReponse("1", e.getMessage()));
+		}
+	    
 	}
 	
 	// Get a Single Employee
 	@GetMapping("/employees/{id}")
-	public Employee getEmployeeById(@PathVariable(value = "id") Long empId) {
-		return empService.getEmpById(empId);
+	public APIResponse getEmployeeById(@PathVariable(value = "id") Long empId) {
+		try {
+			return empService.getEmpById(empId);
+		} catch (Exception e) {
+			return new APIResponse(new ErrorReponse("1", e.getMessage()));
+		}
 	}
 	
 	// Update a Employee
 	@PutMapping("/employees/{id}")
-	public Employee updateEmployee(@PathVariable(value = "id") Long empId,
+	public APIResponse updateEmployee(@PathVariable(value = "id") Long empId,
 	                                        @Valid @RequestBody Employee employeeDetails) {
-		return empService.updateEmpById(empId,employeeDetails);
+		try {
+			return empService.updateEmpById(empId,employeeDetails);
+		} catch (Exception e) {
+			return new APIResponse(new ErrorReponse("1", e.getMessage()));
+		}
 	 }
 	
 	// Delete a Employee
