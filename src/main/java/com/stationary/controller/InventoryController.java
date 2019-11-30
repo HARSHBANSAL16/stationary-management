@@ -16,7 +16,7 @@ public class InventoryController {
 	@Autowired
 	InventoryService inventoryService;
 	
-	@GetMapping("/inventoryDetails")
+	@GetMapping("/details")
 	public APIResponse getAllInventoryDetails() {
 		try {
 			return new APIResponse(inventoryService.getInventoryDetails());

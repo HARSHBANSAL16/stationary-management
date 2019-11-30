@@ -1,6 +1,7 @@
 package com.stationary.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -62,6 +63,12 @@ public class EmpServiceImpl implements EmpService {
 	@Override
 	public EmpStationaryHistory createEmpHist(EmpStationaryHistory empStationaryHistory) {
 		return empHistoryRepository.save(empStationaryHistory);
+	}
+
+	@Override
+	public List<EmpStationaryHistory> getEmpHistById(Long empId) {
+		// TODO Auto-generated method stub
+		return empHistoryRepository.findByEmpId(empId);
 	}
 
 

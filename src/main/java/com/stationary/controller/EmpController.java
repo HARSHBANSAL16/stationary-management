@@ -1,13 +1,11 @@
 package com.stationary.controller;
 
 import javax.transaction.Transactional;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.stationary.data.APIResponse;
 import com.stationary.data.ErrorReponse;
 import com.stationary.entity.EmpStationaryHistory;
-import com.stationary.entity.Employee;
 import com.stationary.services.EmpService;
 import com.stationary.services.InventoryService;
 
@@ -93,5 +90,14 @@ public class EmpController {
 			return new APIResponse(new ErrorReponse("1", e.getMessage()));
 		}
 		
+	}
+	
+	@GetMapping("history/{empID}")
+	public APIResponse getEmployeeHistById(@PathVariable(value = "empID") Long empId) {
+		try {
+			return new APIResponse(service.getEmpHistById(empId)); 
+		} catch (Exception e) {
+			return new APIResponse(new ErrorReponse("1", e.getMessage()));
+		}
 	}
 }
