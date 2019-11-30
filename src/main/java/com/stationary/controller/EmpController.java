@@ -1,10 +1,9 @@
 package com.stationary.controller;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,21 +14,30 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stationary.data.APIResponse;
 import com.stationary.data.ErrorReponse;
+import com.stationary.entity.EmpStationaryHistory;
 import com.stationary.entity.Employee;
 import com.stationary.services.EmpService;
+import com.stationary.services.InventoryService;
+import com.stationary.util.AppliationUtil;
 
+@Transactional
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 public class EmpController {
 
 	@Autowired
-	private EmpService empService;
+	private EmpService service;
+	
+	@Autowired
+	private InventoryService inventoryService;
 	
 	// Get All Employees
-	@GetMapping("/get-all-employees")
+	@GetMapping()
 	public APIResponse getAllEmployees() {
+		//TODO use GlobalException Handler
 		try {
-			return empService.getAllEmployees();
+//			return service.getAllEmployees();
+			return AppliationUtil.getApiRes("msg",service.getAllEmployees());
 		} catch (Exception e) {
 			return new APIResponse(new ErrorReponse("1", e.getMessage()));
 		}
@@ -37,10 +45,10 @@ public class EmpController {
 	}
 	
 	// Create a new Employee
-	@PostMapping("/create-new-employee")
+	@PostMapping()
 	public APIResponse createNote(@Valid @RequestBody Employee employee) {
 		try {
-			return empService.addNewEmployee(employee);
+			return service.addNewEmployee(employee);
 		} catch (Exception e) {
 			return new APIResponse(new ErrorReponse("1", e.getMessage()));
 		}
@@ -48,30 +56,44 @@ public class EmpController {
 	}
 	
 	// Get a Single Employee
-	@GetMapping("/employees/{id}")
+	@GetMapping("/{id}")
 	public APIResponse getEmployeeById(@PathVariable(value = "id") Long empId) {
 		try {
-			return empService.getEmpById(empId);
+			return service.getEmpById(empId);
 		} catch (Exception e) {
 			return new APIResponse(new ErrorReponse("1", e.getMessage()));
 		}
 	}
 	
 	// Update a Employee
-	@PutMapping("/employees/{id}")
+	@PutMapping("/{id}")
 	public APIResponse updateEmployee(@PathVariable(value = "id") Long empId,
 	                                        @Valid @RequestBody Employee employeeDetails) {
 		try {
-			return empService.updateEmpById(empId,employeeDetails);
+			return service.updateEmpById(empId,employeeDetails);
 		} catch (Exception e) {
 			return new APIResponse(new ErrorReponse("1", e.getMessage()));
 		}
 	 }
 	
-	// Delete a Employee
-	@DeleteMapping("/employees/{id}")
-	public ResponseEntity<?> deleteEmployee(@PathVariable(value = "id") Long empId) {
-		empService.deleteEmployeeById(empId);
-	    return ResponseEntity.ok().build();
+//	// Delete a Employee
+//	@DeleteMapping("/employees/{id}")
+//	public ResponseEntity<?> deleteEmployee(@PathVariable(value = "id") Long empId) {
+//		empService.deleteEmployeeById(empId);
+//	    return ResponseEntity.ok().build();
+//	}
+	
+	@PostMapping("/history")
+	public APIResponse createEmpHistory(@RequestBody EmpStationaryHistory empStationaryHistory){
+		try {
+			APIResponse resp =service.createEmpHist(empStationaryHistory);
+			if(resp.getStatus() == 1) {
+				return new APIResponse(inventoryService.upDateInventory(empStationaryHistory));
+			}
+			return resp;
+		} catch (Exception e) {
+			return new APIResponse(new ErrorReponse("1", e.getMessage()));
+		}
+		
 	}
 }

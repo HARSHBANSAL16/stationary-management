@@ -30,6 +30,11 @@ import net.bytebuddy.implementation.bind.annotation.Default;
 //allowGetters = true)
 public class Employee implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8768934817464777092L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id = 0L; 

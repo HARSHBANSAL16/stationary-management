@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.stationary.data.APIResponse;
+import com.stationary.dto.EmpHistoryDto;
+import com.stationary.entity.EmpStationaryHistory;
 import com.stationary.entity.Employee;
 import com.stationary.exception.ResourceNotFoundException;
+import com.stationary.repository.EmpHistoryRepository;
 import com.stationary.repository.EmployeeRepository;
 import com.stationary.services.EmpService;
 
@@ -16,6 +19,9 @@ public class EmpServiceImpl implements EmpService {
 
 	@Autowired
 	EmployeeRepository employeeRepository;
+	
+	@Autowired
+	EmpHistoryRepository empHistoryRepository;
 
 	@Override
 	public APIResponse getAllEmployees() {
@@ -50,6 +56,11 @@ public class EmpServiceImpl implements EmpService {
 		employeeRepository.delete(employee);
 
 		
+	}
+
+	@Override
+	public APIResponse createEmpHist(EmpStationaryHistory empStationaryHistory) {
+		return new APIResponse(empHistoryRepository.save(empStationaryHistory));
 	}
 
 
