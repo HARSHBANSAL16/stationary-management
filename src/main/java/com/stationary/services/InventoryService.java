@@ -1,12 +1,14 @@
 package com.stationary.services;
 
-import com.stationary.data.APIResponse;
+import java.util.List;
+
 import com.stationary.entity.EmpStationaryHistory;
+import com.stationary.entity.Inventory;
 
 public interface InventoryService {
 
-	APIResponse getInventoryDetails();
+	List<Inventory> getInventoryDetails();
 
-	APIResponse upDateInventory(EmpStationaryHistory empStationaryHistory);
+	Inventory upDateInventory(EmpStationaryHistory empStationaryHistory);
 
 }

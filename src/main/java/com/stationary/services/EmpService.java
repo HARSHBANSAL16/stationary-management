@@ -10,17 +10,17 @@ import com.stationary.entity.Employee;
 
 public interface EmpService {
 
-	List<Employee> getAllEmployees();
+//	List<Employee> getAllEmployees();
 
-	APIResponse addNewEmployee(Employee employee);
+//	APIResponse addNewEmployee(Employee employee);
 
-	APIResponse getEmpById(Long empId);
+	Employee getEmpById(Long empId);
 
-	APIResponse updateEmpById(Long empId, @Valid Employee employeeDetails);
+//	APIResponse updateEmpById(Long empId, @Valid Employee employeeDetails);
 
-	void deleteEmployeeById(Long empId);
+//	void deleteEmployeeById(Long empId);
 
-	APIResponse createEmpHist(EmpStationaryHistory empStationaryHistory);
+	EmpStationaryHistory createEmpHist(EmpStationaryHistory empStationaryHistory);
 
 	
 }
