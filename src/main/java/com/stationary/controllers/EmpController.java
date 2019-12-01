@@ -1,7 +1,5 @@
 package com.stationary.controllers;
 
-import java.util.Map;
-
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,14 +10,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stationary.constant.ApplicationConstant;
 import com.stationary.data.APIResponse;
 import com.stationary.data.ErrorReponse;
 import com.stationary.entity.EmpStationaryHistory;
 import com.stationary.services.EmpService;
 import com.stationary.services.InventoryService;
-import com.stationary.util.RestUtil;
-import com.stationary.util.SmsUtil;
 
 @Transactional
 @RestController

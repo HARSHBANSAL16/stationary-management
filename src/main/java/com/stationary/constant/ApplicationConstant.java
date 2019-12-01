@@ -1,8 +1,5 @@
 package com.stationary.constant;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
 * Project clinic-management-service
 *
@@ -24,7 +21,7 @@ public abstract class ApplicationConstant {
 
    public final static String SENDER_ID = "sender";
 
-   public final static String SENDER_ID_VALUE = "DEVDNT";
+   public final static String SENDER_ID_VALUE = "GLOBAL";
 
    public final static String ROUTE = "route";
 
