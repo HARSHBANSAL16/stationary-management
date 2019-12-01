@@ -113,11 +113,4 @@ public class EmpController {
 		}
 	}
 	
-//	@GetMapping("/test")
-//	public void test() {
-//             final Map<String, Object> params =
-//                     SmsUtil.buildParams("9548447709", SmsUtil.buildSmsBody(
-//                             "Harsh", ApplicationConstant.ADDRESS_SMS));
-//             RestUtil.get(ApplicationConstant.BASE_URL_SMS, params);
-//	}
 }

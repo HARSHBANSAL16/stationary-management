@@ -68,13 +68,11 @@ public class EmpServiceImpl implements EmpService {
 
 	@Override
 	public List<EmpStationaryHistory> getEmpHistById(Long empId) {
-		// TODO Auto-generated method stub
 		return empHistoryRepository.findByEmpId(empId);
 	}
 
 	@Override
 	public List<EmpStationaryHistory> getAllEmpHistBy() {
-		// TODO Auto-generated method stub
 		return empHistoryRepository.findAll();
 	}
 
