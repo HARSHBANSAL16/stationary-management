@@ -1,6 +1,6 @@
 package com.stationary.controllers;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.transaction.Transactional;
 
@@ -12,14 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.stationary.constant.ApplicationConstant;
 import com.stationary.data.APIResponse;
 import com.stationary.data.ErrorReponse;
 import com.stationary.entity.EmpStationaryHistory;
 import com.stationary.services.EmpService;
 import com.stationary.services.InventoryService;
-import com.stationary.util.RestUtil;
-import com.stationary.util.SmsUtil;
 
 @Transactional
 @RestController
@@ -84,11 +81,11 @@ public class EmpController {
 //	}
 	
 	@PostMapping("/history")
-	public APIResponse createEmpHistory(@RequestBody EmpStationaryHistory empStationaryHistory){
+	public APIResponse createEmpHistory(@RequestBody List<EmpStationaryHistory> empStationaryHistoryList){
 		try {
-			EmpStationaryHistory empHistCreated = service.createEmpHist(empStationaryHistory);
+			List<EmpStationaryHistory> empHistCreated = service.createEmpHist(empStationaryHistoryList);
 			if(empHistCreated != null) {
-				return new APIResponse(inventoryService.upDateInventory(empStationaryHistory));
+				return new APIResponse(inventoryService.upDateInventory(empStationaryHistoryList));
 			}
 			return new APIResponse(new ErrorReponse());
 		} catch (Exception e) {
@@ -101,6 +98,15 @@ public class EmpController {
 	public APIResponse getEmployeeHistById(@PathVariable(value = "empID") Long empId) {
 		try {
 			return new APIResponse(service.getEmpHistById(empId)); 
+		} catch (Exception e) {
+			return new APIResponse(new ErrorReponse("1", e.getMessage()));
+		}
+	}
+	
+	@GetMapping("history/all")
+	public APIResponse getEmployeeHistById() {
+		try {
+			return new APIResponse(service.getAllEmpHistBy()); 
 		} catch (Exception e) {
 			return new APIResponse(new ErrorReponse("1", e.getMessage()));
 		}

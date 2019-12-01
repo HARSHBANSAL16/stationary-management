@@ -1,5 +1,6 @@
 package com.stationary.services.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,14 +58,24 @@ public class EmpServiceImpl implements EmpService {
 //	}
 
 	@Override
-	public EmpStationaryHistory createEmpHist(EmpStationaryHistory empStationaryHistory) {
-		return empHistoryRepository.save(empStationaryHistory);
+	public List<EmpStationaryHistory> createEmpHist(List<EmpStationaryHistory> empStationaryHistoryList) {
+		
+		for(EmpStationaryHistory e : empStationaryHistoryList) {
+			e.setStationaryDate(new Date());
+		}
+		return empHistoryRepository.saveAll(empStationaryHistoryList);
 	}
 
 	@Override
 	public List<EmpStationaryHistory> getEmpHistById(Long empId) {
 		// TODO Auto-generated method stub
 		return empHistoryRepository.findByEmpId(empId);
+	}
+
+	@Override
+	public List<EmpStationaryHistory> getAllEmpHistBy() {
+		// TODO Auto-generated method stub
+		return empHistoryRepository.findAll();
 	}
 
 

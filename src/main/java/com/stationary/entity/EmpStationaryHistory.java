@@ -50,13 +50,13 @@ public class EmpStationaryHistory implements Serializable{
 	public void setQuantity(Long quantity) {
 		this.quantity = quantity;
 	}
+	
 	public Date getStationaryDate() {
 		return stationaryDate;
 	}
 	public void setStationaryDate(Date stationaryDate) {
-		this.stationaryDate = new Date();
+		this.stationaryDate = stationaryDate;
 	}
-	
 	public String getNote() {
 		return note;
 	}

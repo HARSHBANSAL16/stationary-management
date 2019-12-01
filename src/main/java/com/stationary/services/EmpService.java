@@ -2,6 +2,7 @@ package com.stationary.services;
 
 import java.util.List;
 
+import com.stationary.data.ErrorReponse;
 import com.stationary.entity.EmpStationaryHistory;
 import com.stationary.entity.Employee;
 
@@ -17,9 +18,11 @@ public interface EmpService {
 
 //	void deleteEmployeeById(Long empId);
 
-	EmpStationaryHistory createEmpHist(EmpStationaryHistory empStationaryHistory);
+	List<EmpStationaryHistory> createEmpHist(List<EmpStationaryHistory> empStationaryHistoryList);
 
 	List<EmpStationaryHistory> getEmpHistById(Long empId);
+
+	List<EmpStationaryHistory> getAllEmpHistBy();
 
 	
 }

@@ -9,6 +9,6 @@ public interface InventoryService {
 
 	List<Inventory> getInventoryDetails();
 
-	Inventory upDateInventory(EmpStationaryHistory empStationaryHistory);
+	List<Inventory> upDateInventory(List<EmpStationaryHistory> empStationaryHistoryList);
 
 }
