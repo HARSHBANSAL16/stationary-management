@@ -1,4 +1,4 @@
-package com.stationary.controller;
+package com.stationary.controllers;
 
 import javax.transaction.Transactional;
 

@@ -3,3 +3,5 @@ insert into employee(id,email, empid, name, phone) values(2,"ruhani.thakur@globa
 
 insert into inventory(item_code, item_name, sub_category, quantity) values (1,"pen","Gel Pen","50");
 insert into inventory(item_code, item_name, sub_category, quantity) values (2,"pen","Ball Pen","60");
+insert into inventory(item_code, item_name, sub_category, quantity) values (3,"copy","GL Register","60");
+insert into inventory(item_code, item_name, sub_category, quantity) values (4,"copy","Page Register","40");
