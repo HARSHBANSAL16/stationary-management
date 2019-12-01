@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.stationary.entity.EmpStationaryHistory;
 import com.stationary.entity.Employee;
-import com.stationary.exception.ResourceNotFoundException;
 import com.stationary.repository.EmpHistoryRepository;
 import com.stationary.repository.EmployeeRepository;
 import com.stationary.services.EmpService;
@@ -32,11 +31,7 @@ public class EmpServiceImpl implements EmpService {
 //		return new APIResponse(employeeRepository.save(employee));
 //	}
 
-	@Override
-	public Employee getEmpById(Long empId) {
-		return employeeRepository.findById(empId)
-	            .orElseThrow(() -> new ResourceNotFoundException("Employee", "id", empId));
-	}
+	
 
 //	@Override
 //	public APIResponse updateEmpById(Long empId, @Valid Employee employeeDetails) {
@@ -74,6 +69,11 @@ public class EmpServiceImpl implements EmpService {
 	@Override
 	public List<EmpStationaryHistory> getAllEmpHistBy() {
 		return empHistoryRepository.findAll();
+	}
+
+	@Override
+	public Employee getEmpDtlById(Long empId) {
+		return employeeRepository.findEmpId(empId);
 	}
 
 

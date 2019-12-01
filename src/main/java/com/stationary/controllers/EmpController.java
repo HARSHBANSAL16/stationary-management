@@ -57,7 +57,7 @@ public class EmpController {
 	@GetMapping("/{id}")
 	public APIResponse getEmployeeById(@PathVariable(value = "id") Long empId) {
 		try {
-			return new APIResponse(service.getEmpById(empId)); 
+			return new APIResponse(service.getEmpDtlById(empId)); 
 		} catch (Exception e) {
 			return new APIResponse(new ErrorReponse("1", e.getMessage()));
 		}

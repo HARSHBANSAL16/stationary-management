@@ -12,7 +12,7 @@ public interface EmpService {
 
 //	APIResponse addNewEmployee(Employee employee);
 
-	Employee getEmpById(Long empId);
+	Employee getEmpDtlById(Long empId);
 
 //	APIResponse updateEmpById(Long empId, @Valid Employee employeeDetails);
 
