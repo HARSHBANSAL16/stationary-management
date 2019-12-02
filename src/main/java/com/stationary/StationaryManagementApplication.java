@@ -35,13 +35,13 @@ public class StationaryManagementApplication {
 
 	               final HttpServletResponse response = (HttpServletResponse) res;
 	               response.setHeader("Access-Control-Allow-Origin", "*");
-//	               response.setHeader("Access-Control-Allow-Credentials", "true");
+	               response.setHeader("Access-Control-Allow-Credentials", "true");
 	               response.setHeader("Access-Control-Allow-Methods",
 	                       "POST, GET, OPTIONS, DELETE, PUT,PATCH");
-//	               response.setHeader("Access-Control-Max-Age", "3600");
-//	               response.setHeader("Access-Control-Allow-Headers",
-//	                       "Content-Type, Accept, X-Requested-With, remember-me, Authorization,enctype");
-//	               response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+	               response.setHeader("Access-Control-Max-Age", "3600");
+	               response.setHeader("Access-Control-Allow-Headers",
+	                       "Content-Type, Accept, X-Requested-With, remember-me, Authorization,enctype");
+	               response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 	               long time = System.currentTimeMillis();
 	             
 	                 
